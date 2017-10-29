@@ -22,10 +22,8 @@ if(BUILD_TESTS)
     else()
         include(gtest.cmake)
 
-        add_subdirectory("${CMAKE_CURRENT_BINARY_DIR}/googletest-src"
-                         "${CMAKE_CURRENT_BINARY_DIR}/googletest-build"
-                         EXCLUDE_FROM_ALL
-                        )
+        find_package(Threads REQUIRED)
+
         set(GTEST "gtest")
         set(GTEST_MAIN "gtest_main")
     endif()
@@ -37,6 +35,11 @@ if(BUILD_TESTS)
                                 ${GTEST_MAIN}
                                 chimera
                              )
+        if(NOT SYSTEM_GTEST)
+            target_link_libraries("${name}"
+                                    Threads::Threads
+                                 )
+        endif()
         set_target_properties(${name} PROPERTIES
                                 CXX_STANDARD 17
                                 CXX_EXTENSIONS OFF
