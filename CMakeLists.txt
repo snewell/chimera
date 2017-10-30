@@ -41,12 +41,14 @@ endif()
 
 add_subdirectory(battler)
 add_subdirectory(item)
+add_subdirectory(money)
 add_subdirectory(object)
 add_subdirectory(stat)
 
 set(chimera_sources
         ${battler_sources}
         ${item_sources}
+        ${money_sources}
         ${object_sources}
         ${stat_sources}
    )
@@ -86,10 +88,12 @@ install(TARGETS
 
 install(FILES
             include/chimera/battler.hpp
+            include/chimera/currency.hpp
             include/chimera/equipment.hpp
             include/chimera/identified_object.hpp
             include/chimera/item.hpp
             include/chimera/job.hpp
+            include/chimera/money.hpp
             include/chimera/named_object.hpp
             include/chimera/stat.hpp
             include/chimera/types.hpp
