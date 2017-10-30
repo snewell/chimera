@@ -40,10 +40,12 @@ else()
     endfunction()
 endif()
 
+add_subdirectory(item)
 add_subdirectory(object)
 add_subdirectory(stat)
 
 set(chimera_sources
+        ${item_sources}
         ${object_sources}
         ${stat_sources}
    )
