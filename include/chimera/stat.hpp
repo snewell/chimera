@@ -15,7 +15,9 @@ namespace chimera
             int value;
         };
 
-        std::optional<int> find(int id) const noexcept;
+        auto count() const noexcept -> std::size_t;
+
+        auto find(int id) const noexcept -> std::optional<int>;
 
         void remove(int id);
 

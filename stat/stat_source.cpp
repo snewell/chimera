@@ -16,6 +16,11 @@ namespace
     }
 }
 
+auto StatSource::count() const noexcept -> std::size_t
+{
+    return _stats.size();
+}
+
 auto StatSource::find(int id) const noexcept -> std::optional<int>
 {
     auto it = find_it(_stats, id);

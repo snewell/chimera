@@ -5,6 +5,12 @@
 TEST(StatSourceTest, ctor)
 {
     chimera::StatSource ss;
+    ASSERT_EQ(0, ss.count());
+}
+
+TEST(StatSourceTest, find_nothing)
+{
+    chimera::StatSource ss;
     auto strength = ss.find(10);
     ASSERT_FALSE(strength);
 }
