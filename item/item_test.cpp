@@ -2,7 +2,7 @@
 
 #include <chimera/item.hpp>
 
-TEST(ItemTest, ctor)
+TEST(ItemTest, ctor) // NOLINT
 {
     chimera::Item potion{10, "Potion", 20, "Heal some HP"};
 
@@ -12,7 +12,7 @@ TEST(ItemTest, ctor)
     ASSERT_EQ("Heal some HP", potion.description());
 }
 
-TEST(ItemTest, set_value)
+TEST(ItemTest, set_value) // NOLINT
 {
     chimera::Item potion{10, "Potion", 20, "Heal some HP"};
 
@@ -20,7 +20,7 @@ TEST(ItemTest, set_value)
     ASSERT_EQ(100, potion.value());
 }
 
-TEST(ItemTest, set_description)
+TEST(ItemTest, set_description) // NOLINT
 {
     chimera::Item potion{10, "Potion", 20, "Heal some HP"};
 

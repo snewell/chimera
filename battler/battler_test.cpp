@@ -4,7 +4,7 @@
 
 #include <chimera/battler.hpp>
 
-TEST(BattlerTest, ctor)
+TEST(BattlerTest, ctor) // NOLINT
 {
     auto fighter = chimera::internal::make_pointer<chimera::Job>(10, "Fighter");
     chimera::Battler bob{"Bob", fighter};
@@ -13,7 +13,7 @@ TEST(BattlerTest, ctor)
     ASSERT_EQ(fighter, bob.job());
 }
 
-TEST(BattlerTest, set_job)
+TEST(BattlerTest, set_job) // NOLINT
 {
     auto fighter = chimera::internal::make_pointer<chimera::Job>(10, "Fighter");
     chimera::Battler bob{"Bob", fighter};

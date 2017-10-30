@@ -2,14 +2,14 @@
 
 #include <chimera/named_object.hpp>
 
-TEST(NamedObjectTest, ctor)
+TEST(NamedObjectTest, ctor) // NOLINT
 {
     chimera::NamedObject no{"Teacup"};
 
     ASSERT_EQ("Teacup", no.name());
 }
 
-TEST(NamedObjectTest, set_name)
+TEST(NamedObjectTest, set_name) // NOLINT
 {
     chimera::NamedObject no{"Teacup"};
 

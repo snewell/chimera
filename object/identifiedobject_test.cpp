@@ -2,14 +2,14 @@
 
 #include <chimera/identified_object.hpp>
 
-TEST(IdentifiedObjectTest, ctor)
+TEST(IdentifiedObjectTest, ctor) // NOLINT
 {
     chimera::IdentifiedObject io{10};
 
     ASSERT_EQ(10, io.id());
 }
 
-TEST(IdentifiedObjectTest, set_id)
+TEST(IdentifiedObjectTest, set_id) // NOLINT
 {
     chimera::IdentifiedObject io{10};
 

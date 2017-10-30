@@ -2,20 +2,20 @@
 
 #include <chimera/stat.hpp>
 
-TEST(StatSourceTest, ctor)
+TEST(StatSourceTest, ctor) // NOLINT
 {
     chimera::StatSource ss;
     ASSERT_EQ(0, ss.count());
 }
 
-TEST(StatSourceTest, find_nothing)
+TEST(StatSourceTest, find_nothing) // NOLINT
 {
     chimera::StatSource ss;
     auto strength = ss.find(10);
     ASSERT_FALSE(strength);
 }
 
-TEST(StatSourceTest, set_missing)
+TEST(StatSourceTest, set_missing) // NOLINT
 {
     chimera::StatSource ss;
     ss.set(10, 100);
@@ -25,7 +25,7 @@ TEST(StatSourceTest, set_missing)
     ASSERT_EQ(100, *strength);
 }
 
-TEST(StatSourceTest, set_present)
+TEST(StatSourceTest, set_present) // NOLINT
 {
     chimera::StatSource ss;
     ss.set(10, 100);
@@ -36,7 +36,7 @@ TEST(StatSourceTest, set_present)
     ASSERT_EQ(500, *strength);
 }
 
-TEST(StatSourceTest, adjust_missing)
+TEST(StatSourceTest, adjust_missing) // NOLINT
 {
     chimera::StatSource ss;
     ss.adjust(10, 100);
@@ -46,7 +46,7 @@ TEST(StatSourceTest, adjust_missing)
     ASSERT_EQ(100, *strength);
 }
 
-TEST(StatSourceTest, adjust_present)
+TEST(StatSourceTest, adjust_present) // NOLINT
 {
     chimera::StatSource ss;
     ss.adjust(10, 100);

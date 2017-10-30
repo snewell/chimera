@@ -2,7 +2,7 @@
 
 #include <chimera/job.hpp>
 
-TEST(JobTest, ctor)
+TEST(JobTest, ctor) // NOLINT
 {
     chimera::Job fighter{10, "Fighter"};
 

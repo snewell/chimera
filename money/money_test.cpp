@@ -4,7 +4,7 @@
 
 #include <chimera/money.hpp>
 
-TEST(MoneyTest, ctor)
+TEST(MoneyTest, ctor) // NOLINT
 {
     auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
@@ -14,7 +14,7 @@ TEST(MoneyTest, ctor)
     ASSERT_EQ(20, coins.value());
 }
 
-TEST(MoneyTest, set_currency)
+TEST(MoneyTest, set_currency) // NOLINT
 {
     auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
@@ -25,7 +25,7 @@ TEST(MoneyTest, set_currency)
     ASSERT_EQ(15, coins.value());
 }
 
-TEST(MoneyTest, set_amount)
+TEST(MoneyTest, set_amount) // NOLINT
 {
     auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
@@ -35,7 +35,7 @@ TEST(MoneyTest, set_amount)
     ASSERT_EQ(40, coins.value());
 }
 
-TEST(MoneyTest, even_conversion)
+TEST(MoneyTest, even_conversion) // NOLINT
 {
     auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
@@ -50,7 +50,7 @@ TEST(MoneyTest, even_conversion)
     ASSERT_EQ(0, coins.amount());
 }
 
-TEST(MoneyTest, uneven_conversion)
+TEST(MoneyTest, uneven_conversion) // NOLINT
 {
     auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};

@@ -2,7 +2,7 @@
 
 #include <chimera/currency.hpp>
 
-TEST(CurrencyTest, ctor)
+TEST(CurrencyTest, ctor) // NOLINT
 {
     chimera::Currency gold{10, "Gold", 2.0};
 
@@ -11,7 +11,7 @@ TEST(CurrencyTest, ctor)
     ASSERT_EQ(2.0, gold.value());
 }
 
-TEST(CurrencyTest, set_value)
+TEST(CurrencyTest, set_value) // NOLINT
 {
     chimera::Currency gold{10, "Gold", 2.0};
 
