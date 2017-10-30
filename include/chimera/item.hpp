@@ -17,7 +17,7 @@ namespace chimera
 
         auto value() const noexcept -> int;
 
-        void value(int) noexcept;
+        void value(int value) noexcept;
 
         auto description() const noexcept -> String const&;
 

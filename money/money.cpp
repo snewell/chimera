@@ -38,7 +38,7 @@ auto Money::value() const noexcept -> int
     return _currency->value() * _amount;
 }
 
-auto Money::convert(ConstPointer<Currency> currency) -> Money
+auto Money::convert(ConstPointer<Currency> const &currency) -> Money
 {
     auto const to_ratio = _currency->value() / currency->value();
     auto const from_ratio = currency->value() / _currency->value();
@@ -50,7 +50,7 @@ auto Money::convert(ConstPointer<Currency> currency) -> Money
     return Money{currency, static_cast<int>(to_amount)};
 }
 
-auto Money::convert_amount(ConstPointer<Currency> currency) const noexcept -> int
+auto Money::convert_amount(ConstPointer<Currency> const &currency) const noexcept -> int
 {
     auto const ratio = _currency->value() / currency->value();
     return _amount * ratio;

@@ -21,9 +21,9 @@ namespace chimera
 
         auto value() const noexcept -> int;
 
-        auto convert(ConstPointer<Currency> currency) -> Money;
+        auto convert(ConstPointer<Currency> const &currency) -> Money;
 
-        auto convert_amount(ConstPointer<Currency> currency) const noexcept -> int;
+        auto convert_amount(ConstPointer<Currency> const &currency) const noexcept -> int;
 
     private:
         ConstPointer<Currency> _currency;
