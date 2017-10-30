@@ -12,27 +12,15 @@ include(GNUInstallDirs)
 enable_testing()
 
 option(BUILD_TESTS  "Build unit tests" ON)
-option(SYSTEM_GTEST "Use system-wide gtest instead of building locally" ON)
 
 if(BUILD_TESTS)
-    if(SYSTEM_GTEST)
-        find_package(GTest REQUIRED)
-        set(GTEST "GTest::GTest")
-        set(GTEST_MAIN "GTest::Main")
-    else()
-        include(gtest.cmake)
-
-        find_package(Threads REQUIRED)
-
-        set(GTEST "gtest")
-        set(GTEST_MAIN "gtest_main")
-    endif()
+    find_package(GTest REQUIRED)
 
     function(create_test name)
         add_executable(${name} ${ARGN})
         target_link_libraries(${name}
-                                ${GTEST}
-                                ${GTEST_MAIN}
+                                GTest::GTest
+                                GTest::Main
                                 chimera
                              )
         if(NOT SYSTEM_GTEST)
