@@ -32,6 +32,9 @@ if(BUILD_TESTS)
                                 CXX_STANDARD 17
                                 CXX_EXTENSIONS OFF
                              )
+        target_include_directories(${name} PUBLIC
+                                    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include_internal>
+                                )
         add_test(${name} ${name} "--gtest_output=xml:${CMAKE_CURRENT_BINARY_DIR}/${name}_results.xml")
     endfunction()
 else()
@@ -40,11 +43,13 @@ else()
     endfunction()
 endif()
 
+add_subdirectory(battler)
 add_subdirectory(item)
 add_subdirectory(object)
 add_subdirectory(stat)
 
 set(chimera_sources
+        ${battler_sources}
         ${item_sources}
         ${object_sources}
         ${stat_sources}
@@ -70,6 +75,7 @@ target_include_directories(chimera PUBLIC
                           )
 target_include_directories(chimera-static PUBLIC
                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include_internal>
                             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
                           )
 
@@ -83,9 +89,11 @@ install(TARGETS
        )
 
 install(FILES
+            include/chimera/battler.hpp
             include/chimera/equipment.hpp
             include/chimera/identified_object.hpp
             include/chimera/item.hpp
+            include/chimera/job.hpp
             include/chimera/named_object.hpp
             include/chimera/stat.hpp
             include/chimera/types.hpp
