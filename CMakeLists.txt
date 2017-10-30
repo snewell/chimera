@@ -83,9 +83,12 @@ install(TARGETS
        )
 
 install(FILES
+            include/chimera/equipment.hpp
             include/chimera/identified_object.hpp
+            include/chimera/item.hpp
             include/chimera/named_object.hpp
             include/chimera/stat.hpp
+            include/chimera/types.hpp
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/chimera
        )
 
