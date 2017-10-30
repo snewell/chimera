@@ -21,13 +21,9 @@ if(BUILD_TESTS)
         target_link_libraries(${name}
                                 GTest::GTest
                                 GTest::Main
+                                Threads::Threads
                                 chimera
                              )
-        if(NOT SYSTEM_GTEST)
-            target_link_libraries("${name}"
-                                    Threads::Threads
-                                 )
-        endif()
         set_target_properties(${name} PROPERTIES
                                 CXX_STANDARD 17
                                 CXX_EXTENSIONS OFF
