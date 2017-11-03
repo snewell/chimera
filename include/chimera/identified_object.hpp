@@ -8,7 +8,7 @@ namespace chimera
     class IdentifiedObject
     {
     public:
-        IdentifiedObject(Identifier id);
+        explicit IdentifiedObject(Identifier id);
 
         auto id() const noexcept -> Identifier;
 

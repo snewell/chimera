@@ -8,7 +8,7 @@ namespace chimera
     class NamedObject
     {
     public:
-        NamedObject(String name);
+        explicit NamedObject(String name);
 
         auto name() const noexcept -> String const&;
 

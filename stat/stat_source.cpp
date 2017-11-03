@@ -22,10 +22,7 @@ namespace
         {
             return found_fn(it);
         }
-        else
-        {
-            return missed_fn(it);
-        }
+        return missed_fn(it);
     }
 
     template <typename C, typename FOUND_FN>
