@@ -2,7 +2,7 @@
 
 #include <chimera/stat.hpp>
 
-TEST(BaseStatTest, ctor)
+TEST(BaseStatTest, ctor) // NOLINT
 {
     chimera::BaseStat strength{10, "Strength", 0};
 
@@ -11,7 +11,7 @@ TEST(BaseStatTest, ctor)
     ASSERT_EQ(0, strength.fallback());
 }
 
-TEST(BaseStatTest, set_fallback)
+TEST(BaseStatTest, set_fallback) // NOLINT
 {
     chimera::BaseStat strength{10, "Strength", 0};
 
@@ -19,7 +19,7 @@ TEST(BaseStatTest, set_fallback)
     ASSERT_EQ(100, strength.fallback());
 }
 
-TEST(BaseStatTest, get_set_value)
+TEST(BaseStatTest, get_set_value) // NOLINT
 {
     chimera::BaseStat strength{10, "Strength", 0};
     chimera::StatSource stats;
@@ -28,7 +28,7 @@ TEST(BaseStatTest, get_set_value)
     ASSERT_EQ(100, strength.get(stats));
 }
 
-TEST(BaseStatTest, get_unset_value)
+TEST(BaseStatTest, get_unset_value) // NOLINT
 {
     chimera::BaseStat strength{10, "Strength", 0};
     chimera::StatSource stats;

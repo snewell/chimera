@@ -2,7 +2,7 @@
 
 #include <chimera/stat.hpp>
 
-TEST(ComplexStatTest, ctor)
+TEST(ComplexStatTest, ctor) // NOLINT
 {
     auto fn = [](auto const & stats) {
         (void)stats;
@@ -16,7 +16,7 @@ TEST(ComplexStatTest, ctor)
     ASSERT_EQ(0, strength.calculation()(stats));
 }
 
-TEST(ComplexStatTest, set_calculation)
+TEST(ComplexStatTest, set_calculation) // NOLINT
 {
     auto fn = [](auto const & stats) {
         (void)stats;
@@ -34,7 +34,7 @@ TEST(ComplexStatTest, set_calculation)
     ASSERT_EQ(100, strength.calculation()(stats));
 }
 
-TEST(ComplexStatTest, get_value)
+TEST(ComplexStatTest, get_value) // NOLINT
 {
     auto fn = [](auto const & stats) {
         (void)stats;
