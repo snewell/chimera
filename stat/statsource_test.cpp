@@ -56,3 +56,20 @@ TEST(StatSourceTest, adjust_present) // NOLINT
     ASSERT_TRUE(strength);
     ASSERT_EQ(600, *strength);
 }
+
+TEST(StatSourceTest, remove_present) // NOLINT
+{
+    chimera::StatSource ss;
+
+    ss.set(10, 10);
+    ss.remove(10);
+    ASSERT_EQ(0, ss.count());
+}
+
+TEST(StatSourceTest, remove_missing) // NOLINT
+{
+    chimera::StatSource ss;
+
+    ss.remove(10);
+    ASSERT_EQ(0, ss.count());
+}
