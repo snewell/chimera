@@ -9,12 +9,11 @@ namespace chimera
     class Battler : private NamedObject
     {
     public:
-        Battler(String name,
-                ConstPointer<Job> job);
+        Battler(String name, ConstPointer<Job> job);
 
-        auto job() const noexcept -> ConstPointer<Job> const&;
+        auto job() const noexcept -> ConstPointer<Job> const &;
 
-        void job(ConstPointer<Job> const &job);
+        void job(ConstPointer<Job> const & job);
 
         using NamedObject::name;
 

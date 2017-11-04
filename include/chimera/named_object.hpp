@@ -10,9 +10,9 @@ namespace chimera
     public:
         explicit NamedObject(String name);
 
-        auto name() const noexcept -> String const&;
+        auto name() const noexcept -> String const &;
 
-        void name(String const &name);
+        void name(String const & name);
 
     private:
         String _name;

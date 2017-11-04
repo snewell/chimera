@@ -2,12 +2,12 @@
 
 using chimera::Currency;
 
-Currency::Currency(Identifier id,
-                   String name,
-                   double value)
-  : NamedObject{std::move(name)},
-    IdentifiedObject{id},
-    _value{value} { }
+Currency::Currency(Identifier id, String name, double value)
+  : NamedObject{std::move(name)}
+  , IdentifiedObject{id}
+  , _value{value}
+{
+}
 
 auto Currency::value() const noexcept -> double
 {

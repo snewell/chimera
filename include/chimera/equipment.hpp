@@ -9,14 +9,11 @@ namespace chimera
     class Equipment : public Item
     {
     public:
-        Equipment(Identifier id,
-                  String name,
-                  int value,
-                  String description);
+        Equipment(Identifier id, String name, int value, String description);
 
-        auto stats() const noexcept -> StatSource const&;
+        auto stats() const noexcept -> StatSource const &;
 
-        auto stats() -> StatSource&;
+        auto stats() -> StatSource &;
 
     private:
         StatSource _stats;

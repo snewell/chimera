@@ -6,25 +6,21 @@
 
 namespace chimera
 {
-    class Item : private NamedObject,
-                 private IdentifiedObject
+    class Item : private NamedObject, private IdentifiedObject
     {
     public:
-        Item(Identifier id,
-             String name,
-             int value,
-             String description);
+        Item(Identifier id, String name, int value, String description);
 
         auto value() const noexcept -> int;
 
         void value(int value) noexcept;
 
-        auto description() const noexcept -> String const&;
+        auto description() const noexcept -> String const &;
 
-        void description(String const &description);
+        void description(String const & description);
 
-        using NamedObject::name;
         using IdentifiedObject::id;
+        using NamedObject::name;
 
     private:
         String _description;

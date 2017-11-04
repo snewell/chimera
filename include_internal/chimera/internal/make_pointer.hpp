@@ -5,8 +5,8 @@
 
 namespace chimera::internal
 {
-    template <typename T, typename ...Ts>
-    auto make_pointer(Ts && ...ts)
+    template <typename T, typename... Ts>
+    auto make_pointer(Ts &&... ts)
     {
         return std::make_shared<T>(std::forward<Ts>(ts)...);
     }

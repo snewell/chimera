@@ -6,7 +6,8 @@
 
 TEST(MoneyTest, ctor) // NOLINT
 {
-    auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
+    auto gold =
+        chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
 
     ASSERT_EQ(gold, coins.currency());
@@ -16,10 +17,12 @@ TEST(MoneyTest, ctor) // NOLINT
 
 TEST(MoneyTest, set_currency) // NOLINT
 {
-    auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
+    auto gold =
+        chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
 
-    auto silver = chimera::internal::make_pointer<chimera::Currency>(20, "Silver", 1.5);
+    auto silver =
+        chimera::internal::make_pointer<chimera::Currency>(20, "Silver", 1.5);
     coins.currency(silver);
     ASSERT_EQ(silver, coins.currency());
     ASSERT_EQ(15, coins.value());
@@ -27,7 +30,8 @@ TEST(MoneyTest, set_currency) // NOLINT
 
 TEST(MoneyTest, set_amount) // NOLINT
 {
-    auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
+    auto gold =
+        chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
 
     coins.amount(20);
@@ -37,10 +41,12 @@ TEST(MoneyTest, set_amount) // NOLINT
 
 TEST(MoneyTest, even_conversion) // NOLINT
 {
-    auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
+    auto gold =
+        chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
 
-    auto bronze = chimera::internal::make_pointer<chimera::Currency>(20, "Bronze", 1.0);
+    auto bronze =
+        chimera::internal::make_pointer<chimera::Currency>(20, "Bronze", 1.0);
     auto amount = coins.convert_amount(bronze);
 
     ASSERT_EQ(20, amount);
@@ -52,10 +58,12 @@ TEST(MoneyTest, even_conversion) // NOLINT
 
 TEST(MoneyTest, uneven_conversion) // NOLINT
 {
-    auto gold = chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
+    auto gold =
+        chimera::internal::make_pointer<chimera::Currency>(10, "Gold", 2.0);
     chimera::Money coins{gold, 10};
 
-    auto silver = chimera::internal::make_pointer<chimera::Currency>(20, "Silver", 1.5);
+    auto silver =
+        chimera::internal::make_pointer<chimera::Currency>(20, "Silver", 1.5);
     auto amount = coins.convert_amount(silver);
 
     ASSERT_EQ(13, amount);

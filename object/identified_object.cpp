@@ -3,7 +3,9 @@
 using chimera::IdentifiedObject;
 
 IdentifiedObject::IdentifiedObject(Identifier id)
-  : _id{id} { }
+  : _id{id}
+{
+}
 
 auto IdentifiedObject::id() const noexcept -> Identifier
 {

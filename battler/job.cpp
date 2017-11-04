@@ -2,7 +2,8 @@
 
 using chimera::Job;
 
-Job::Job(Identifier id,
-         String name)
-  : NamedObject{std::move(name)},
-    IdentifiedObject{id} { }
+Job::Job(Identifier id, String name)
+  : NamedObject{std::move(name)}
+  , IdentifiedObject{id}
+{
+}

@@ -6,13 +6,10 @@
 
 namespace chimera
 {
-    class Currency : private NamedObject,
-                     private IdentifiedObject
+    class Currency : private NamedObject, private IdentifiedObject
     {
     public:
-        Currency(Identifier id,
-                 String name,
-                 double value);
+        Currency(Identifier id, String name, double value);
 
         auto value() const noexcept -> double;
 

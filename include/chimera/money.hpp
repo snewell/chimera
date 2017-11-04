@@ -8,12 +8,11 @@ namespace chimera
     class Money
     {
     public:
-        Money(ConstPointer<Currency> currency,
-              int amount);
+        Money(ConstPointer<Currency> currency, int amount);
 
-        auto currency() const noexcept -> ConstPointer<Currency> const&;
+        auto currency() const noexcept -> ConstPointer<Currency> const &;
 
-        void currency(ConstPointer<Currency> const &currency);
+        void currency(ConstPointer<Currency> const & currency);
 
         auto amount() const noexcept -> int;
 
@@ -21,9 +20,10 @@ namespace chimera
 
         auto value() const noexcept -> int;
 
-        auto convert(ConstPointer<Currency> const &currency) -> Money;
+        auto convert(ConstPointer<Currency> const & currency) -> Money;
 
-        auto convert_amount(ConstPointer<Currency> const &currency) const noexcept -> int;
+        auto convert_amount(ConstPointer<Currency> const & currency) const
+            noexcept -> int;
 
     private:
         ConstPointer<Currency> _currency;

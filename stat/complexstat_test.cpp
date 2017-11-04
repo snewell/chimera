@@ -4,8 +4,8 @@
 
 TEST(ComplexStatTest, ctor)
 {
-    auto fn = [](auto const &stats) {
-        (void) stats;
+    auto fn = [](auto const & stats) {
+        (void)stats;
         return 0;
     };
     chimera::ComplexStat strength{10, "Strength", fn};
@@ -18,14 +18,14 @@ TEST(ComplexStatTest, ctor)
 
 TEST(ComplexStatTest, set_calculation)
 {
-    auto fn = [](auto const &stats) {
-        (void) stats;
+    auto fn = [](auto const & stats) {
+        (void)stats;
         return 0;
     };
     chimera::ComplexStat strength{10, "Strength", fn};
 
-    auto fn2 = [](auto const &stats) {
-        (void) stats;
+    auto fn2 = [](auto const & stats) {
+        (void)stats;
         return 100;
     };
 
@@ -36,8 +36,8 @@ TEST(ComplexStatTest, set_calculation)
 
 TEST(ComplexStatTest, get_value)
 {
-    auto fn = [](auto const &stats) {
-        (void) stats;
+    auto fn = [](auto const & stats) {
+        (void)stats;
         return 10;
     };
     chimera::ComplexStat strength{10, "Strength", fn};

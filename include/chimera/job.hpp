@@ -6,12 +6,10 @@
 
 namespace chimera
 {
-    class Job : private NamedObject,
-                private IdentifiedObject
+    class Job : private NamedObject, private IdentifiedObject
     {
     public:
-        Job(Identifier id,
-            String name);
+        Job(Identifier id, String name);
 
         using IdentifiedObject::id;
         using NamedObject::name;
@@ -19,4 +17,3 @@ namespace chimera
 }
 
 #endif
-

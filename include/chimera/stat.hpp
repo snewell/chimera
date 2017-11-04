@@ -33,14 +33,12 @@ namespace chimera
         std::vector<StoredStat> _stats;
     };
 
-    class Stat : private NamedObject,
-                 private IdentifiedObject
+    class Stat : private NamedObject, private IdentifiedObject
     {
     public:
-        Stat(Identifier id,
-             String name);
+        Stat(Identifier id, String name);
 
-        virtual auto get(StatSource const &ss) const noexcept -> int = 0;
+        virtual auto get(StatSource const & ss) const noexcept -> int = 0;
 
         using IdentifiedObject::id;
         using NamedObject::name;
@@ -49,15 +47,13 @@ namespace chimera
     class BaseStat : public Stat
     {
     public:
-        BaseStat(Identifier id,
-                 String name,
-                 int fallback);
+        BaseStat(Identifier id, String name, int fallback);
 
         auto fallback() const noexcept -> int;
 
         void fallback(int fallback) noexcept;
 
-        auto get(StatSource const &ss) const noexcept -> int override;
+        auto get(StatSource const & ss) const noexcept -> int override;
 
     private:
         int _fallback;
@@ -66,17 +62,15 @@ namespace chimera
     class ComplexStat : public Stat
     {
     public:
-        using Calculation = std::function<int (StatSource const &)>;
+        using Calculation = std::function<int(StatSource const &)>;
 
-        ComplexStat(Identifier id,
-                    String name,
-                    Calculation calculation);
+        ComplexStat(Identifier id, String name, Calculation calculation);
 
-        auto calculation() const noexcept -> Calculation const&;
+        auto calculation() const noexcept -> Calculation const &;
 
-        void calculation(Calculation const &calculation);
+        void calculation(Calculation const & calculation);
 
-        auto get(StatSource const &ss) const noexcept -> int override;
+        auto get(StatSource const & ss) const noexcept -> int override;
 
     private:
         Calculation _calculation;
