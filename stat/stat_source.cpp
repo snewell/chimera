@@ -57,16 +57,18 @@ void StatSource::remove(chimera::Identifier id)
 
 void StatSource::set(chimera::Identifier id, int value)
 {
-    branched_find(_stats, id, [value](auto it) { it->value = value; },
-                  [this, id, value](auto it) {
-                      _stats.emplace(it, StoredStat{id, value});
-                  });
+    auto set_fn = [value](auto it) { it->value = value; };
+    auto store_fn = [this, id, value](auto it) {
+                        _stats.emplace(it, StoredStat{id, value});
+                    };
+    branched_find(_stats, id, set_fn, store_fn);
 }
 
 void StatSource::adjust(chimera::Identifier id, int value)
 {
-    branched_find(_stats, id, [value](auto it) { it->value += value; },
-                  [this, id, value](auto it) {
-                      _stats.emplace(it, StoredStat{id, value});
-                  });
+    auto adjust_fn = [value](auto it) { it->value += value; };
+    auto store_fn = [this, id, value](auto it) {
+                        _stats.emplace(it, StoredStat{id, value});
+                    };
+    branched_find(_stats, id, adjust_fn, store_fn);
 }
