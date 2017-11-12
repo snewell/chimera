@@ -39,7 +39,7 @@ namespace
             auto const new_count = it->_count + count;
             if(new_count <= stack_limit)
             {
-                it->_count += new_count;
+                it->_count = new_count;
             }
             else
             {
