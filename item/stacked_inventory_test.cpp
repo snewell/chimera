@@ -1,0 +1,69 @@
+#include <gtest/gtest.h>
+
+#include <chimera/inventory.hpp>
+#include <chimera/internal/make_pointer.hpp>
+
+TEST(StackedInventoryTest, ctor)
+{
+    chimera::StackedInventory si{10, 10};
+
+    ASSERT_EQ(0, si.size());
+}
+
+TEST(StackedInventoryTest, insert_success)
+{
+    auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
+
+    chimera::StackedInventory si{10, 10};
+    si.insert(potion);
+    ASSERT_EQ(1, si.size());
+    ASSERT_TRUE(si.contains(potion));
+    ASSERT_EQ(1, si.count(potion));
+}
+
+TEST(StackedInventoryTest, insert_dup_success)
+{
+    auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
+
+    chimera::StackedInventory si{10, 10};
+    si.insert(potion, 3);
+    ASSERT_EQ(3, si.size());
+    ASSERT_TRUE(si.contains(potion));
+    ASSERT_EQ(3, si.count(potion));
+}
+
+TEST(StackedInventoryTest, insert_full)
+{
+    auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
+
+    chimera::StackedInventory si{0, 0};
+    ASSERT_THROW(si.insert(potion), chimera::Inventory::InsufficentSpaceException);
+    ASSERT_EQ(0, si.size());
+    ASSERT_FALSE(si.contains(potion));
+}
+
+TEST(StackedInventoryTest, insert_overflow)
+{
+    auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
+
+    chimera::StackedInventory si{5, 5};
+    si.insert(potion);
+    auto insert_fn = [&si, potion]() {
+        si.insert(potion, 5);
+    };
+    ASSERT_THROW(insert_fn(), chimera::Inventory::InsufficentSpaceException);
+    ASSERT_EQ(1, si.size());
+}
+
+TEST(StackedInventoryTest, insert_new_overflow)
+{
+    auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
+
+    chimera::StackedInventory si{5, 5};
+    auto insert_fn = [&si, potion]() {
+        si.insert(potion, 6);
+    };
+    ASSERT_THROW(insert_fn(), chimera::Inventory::InsufficentSpaceException);
+    ASSERT_EQ(0, si.size());
+    ASSERT_FALSE(si.contains(potion));
+}

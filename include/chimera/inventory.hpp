@@ -1,9 +1,10 @@
 #ifndef CHIMERA_INVENTORY_HPP
 #define CHIMERA_INVENTORY_HPP 1
 
-#include <chimera/item.hpp>
-
+#include <exception>
 #include <vector>
+
+#include <chimera/item.hpp>
 
 namespace chimera
 {
@@ -19,6 +20,8 @@ namespace chimera
         virtual auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t = 0;
 
         virtual auto contains(ConstPointer<Item> const &item) const noexcept -> bool;
+
+        class InsufficentSpaceException : public std::exception { };
     };
 
     class FixedSizeInventory : public Inventory
@@ -52,6 +55,8 @@ namespace chimera
         auto size() const noexcept -> std::size_t override;
 
         auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t override;
+
+        auto contains(ConstPointer<Item> const &item) const noexcept -> bool override;
 
     private:
         struct Slot
