@@ -3,14 +3,14 @@
 #include <chimera/internal/make_pointer.hpp>
 #include <chimera/inventory.hpp>
 
-TEST(StackedInventoryTest, ctor)
+TEST(StackedInventoryTest, ctor) // NOLINT
 {
     chimera::StackedInventory si{10, 10};
 
     ASSERT_EQ(0, si.size());
 }
 
-TEST(StackedInventoryTest, insert_success)
+TEST(StackedInventoryTest, insert_success) // NOLINT
 {
     auto potion = chimera::internal::make_pointer<chimera::Item>(
         10, "Potion", 20, "Heal some HP");
@@ -22,7 +22,7 @@ TEST(StackedInventoryTest, insert_success)
     ASSERT_EQ(1, si.count(potion));
 }
 
-TEST(StackedInventoryTest, insert_dup_success)
+TEST(StackedInventoryTest, insert_dup_success) // NOLINT
 {
     auto potion = chimera::internal::make_pointer<chimera::Item>(
         10, "Potion", 20, "Heal some HP");
@@ -34,7 +34,7 @@ TEST(StackedInventoryTest, insert_dup_success)
     ASSERT_EQ(3, si.count(potion));
 }
 
-TEST(StackedInventoryTest, insert_full)
+TEST(StackedInventoryTest, insert_full) // NOLINT
 {
     auto potion = chimera::internal::make_pointer<chimera::Item>(
         10, "Potion", 20, "Heal some HP");
@@ -46,7 +46,7 @@ TEST(StackedInventoryTest, insert_full)
     ASSERT_FALSE(si.contains(potion));
 }
 
-TEST(StackedInventoryTest, insert_overflow)
+TEST(StackedInventoryTest, insert_overflow) // NOLINT
 {
     auto potion = chimera::internal::make_pointer<chimera::Item>(
         10, "Potion", 20, "Heal some HP");
@@ -58,7 +58,7 @@ TEST(StackedInventoryTest, insert_overflow)
     ASSERT_EQ(1, si.size());
 }
 
-TEST(StackedInventoryTest, insert_new_overflow)
+TEST(StackedInventoryTest, insert_new_overflow) // NOLINT
 {
     auto potion = chimera::internal::make_pointer<chimera::Item>(
         10, "Potion", 20, "Heal some HP");

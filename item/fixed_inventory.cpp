@@ -77,9 +77,5 @@ auto FixedSizeInventory::contains(ConstPointer<Item> const & item) const
 {
     auto const first = lower_helper(_items, item);
 
-    if((first != std::end(_items)) && ((*first) == item))
-    {
-        return true;
-    }
-    return false;
+    return ((first != std::end(_items)) && ((*first) == item));
 }
