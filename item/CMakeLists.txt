@@ -10,6 +10,7 @@ set(item_sources
 create_test(item_test
                 "${CMAKE_CURRENT_SOURCE_DIR}/equipment_test.cpp"
                 "${CMAKE_CURRENT_SOURCE_DIR}/fixed_inventory_test.cpp"
+                "${CMAKE_CURRENT_SOURCE_DIR}/inventory_test.cpp"
                 "${CMAKE_CURRENT_SOURCE_DIR}/item_test.cpp"
                 "${CMAKE_CURRENT_SOURCE_DIR}/stacked_inventory_test.cpp"
            )
