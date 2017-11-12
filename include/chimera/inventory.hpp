@@ -31,7 +31,7 @@ namespace chimera
     class FixedSizeInventory : public Inventory
     {
     public:
-        FixedSizeInventory(std::size_t capacity);
+        explicit FixedSizeInventory(std::size_t capacity);
 
         void insert(ConstPointer<Item> const & item) override;
 
