@@ -15,8 +15,8 @@ namespace
     auto lower_helper(C && c, chimera::ConstPointer<chimera::Item> const &item)
     {
         return std::lower_bound(std::begin(c), std::end(c), item->id(),
-                                [](auto const & item, auto id) {
-                                    return item->id() < id;
+                                [](auto const & it, auto id) {
+                                    return it->id() < id;
                                 });
     }
 
@@ -24,8 +24,8 @@ namespace
     auto upper_helper(C && c, chimera::ConstPointer<chimera::Item> const &item)
     {
         return std::upper_bound(std::begin(c), std::end(c), item->id(),
-                                [](auto id, auto const & item) {
-                                    return id < item->id();
+                                [](auto id, auto const & it) {
+                                    return id < it->id();
                                 });
     }
 
