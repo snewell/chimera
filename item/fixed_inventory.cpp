@@ -12,13 +12,29 @@ FixedSizeInventory::FixedSizeInventory(std::size_t capacity)
 namespace
 {
     template <typename C>
+    auto lower_helper(C && c, chimera::ConstPointer<chimera::Item> const &item)
+    {
+        return std::lower_bound(std::begin(c), std::end(c), item->id(),
+                                [](auto const & item, auto id) {
+                                    return item->id() < id;
+                                });
+    }
+
+    template <typename C>
+    auto upper_helper(C && c, chimera::ConstPointer<chimera::Item> const &item)
+    {
+        return std::upper_bound(std::begin(c), std::end(c), item->id(),
+                                [](auto id, auto const & item) {
+                                    return id < item->id();
+                                });
+    }
+
+    template <typename C>
     void insert_helper(C &items, chimera::ConstPointer<chimera::Item> const &item, std::size_t count)
     {
         if((items.size() + count) < items.capacity())
         {
-            auto it = std::lower_bound(std::begin(items), std::end(items), item->id(), [](auto const &item, auto const id) {
-                return item->id() < id;
-            });
+            auto it = lower_helper(items, item);
             while(count != 0)
             {
                 --count;
@@ -39,7 +55,25 @@ void FixedSizeInventory::insert(ConstPointer<Item> const &item, std::size_t coun
 
 }
 
-auto chimera::FixedSizeInventory::size() const noexcept -> std::size_t
+auto FixedSizeInventory::size() const noexcept -> std::size_t
 {
     return _items.size();
+}
+
+auto FixedSizeInventory::count(ConstPointer<Item> const &item) const noexcept -> std::size_t
+{
+    auto const first = lower_helper(_items, item);
+    auto const last = upper_helper(_items, item);
+    return std::distance(first, last);
+}
+
+auto FixedSizeInventory::contains(ConstPointer<Item> const &item) const noexcept -> bool
+{
+    auto const first = lower_helper(_items, item);
+
+    if((first != std::end(_items)) && ((*first) == item))
+    {
+        return true;
+    }
+    return false;
 }

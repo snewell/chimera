@@ -17,6 +17,8 @@ TEST(FixedInventoryTest, insert_success)
     chimera::FixedSizeInventory fi{10};
     fi.insert(potion);
     ASSERT_EQ(1, fi.size());
+    ASSERT_TRUE(fi.contains(potion));
+    ASSERT_EQ(1, fi.count(potion));
 }
 
 TEST(FixedInventoryTest, insert_dup_success)
@@ -26,6 +28,8 @@ TEST(FixedInventoryTest, insert_dup_success)
     chimera::FixedSizeInventory fi{10};
     fi.insert(potion, 3);
     ASSERT_EQ(3, fi.size());
+    ASSERT_TRUE(fi.contains(potion));
+    ASSERT_EQ(3, fi.count(potion));
 }
 
 TEST(FixedInventoryTest, insert_full)
@@ -35,6 +39,7 @@ TEST(FixedInventoryTest, insert_full)
     chimera::FixedSizeInventory fi{0};
     fi.insert(potion);
     ASSERT_EQ(0, fi.size());
+    ASSERT_FALSE(fi.contains(potion));
 }
 
 TEST(FixedInventoryTest, insert_overflow)
@@ -44,4 +49,5 @@ TEST(FixedInventoryTest, insert_overflow)
     chimera::FixedSizeInventory fi{5};
     fi.insert(potion, 6);
     ASSERT_EQ(0, fi.size());
+    ASSERT_FALSE(fi.contains(potion));
 }

@@ -15,6 +15,10 @@ namespace chimera
         virtual void insert(ConstPointer<Item> const &item, std::size_t count);
 
         virtual auto size() const noexcept -> std::size_t = 0;
+
+        virtual auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t = 0;
+
+        virtual auto contains(ConstPointer<Item> const &item) const noexcept -> bool;
     };
 
     class FixedSizeInventory : public Inventory
@@ -27,6 +31,10 @@ namespace chimera
         void insert(ConstPointer<Item> const &item, std::size_t count) override;
 
         auto size() const noexcept -> std::size_t override;
+
+        auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t override;
+
+        auto contains(ConstPointer<Item> const &item) const noexcept -> bool override;
 
     private:
         std::vector<ConstPointer<Item>> _items;
@@ -42,6 +50,8 @@ namespace chimera
         void insert(ConstPointer<Item> const &item, std::size_t count) override;
 
         auto size() const noexcept -> std::size_t override;
+
+        auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t override;
 
     private:
         struct Slot

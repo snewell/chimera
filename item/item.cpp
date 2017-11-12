@@ -1,5 +1,4 @@
 #include <chimera/item.hpp>
-#include <chimera/inventory.hpp>
 
 using chimera::Item;
 
@@ -29,15 +28,4 @@ auto Item::description() const noexcept -> String const &
 void Item::description(String const & description)
 {
     _description = description;
-}
-
-using chimera::Inventory;
-
-void Inventory::insert(ConstPointer<Item> const &item, std::size_t count)
-{
-    while(count != 0)
-    {
-        --count;
-        insert(item);
-    }
 }
