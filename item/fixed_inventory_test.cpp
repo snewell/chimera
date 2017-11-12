@@ -37,7 +37,7 @@ TEST(FixedInventoryTest, insert_full)
     auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
 
     chimera::FixedSizeInventory fi{0};
-    fi.insert(potion);
+    ASSERT_THROW(fi.insert(potion), chimera::Inventory::InsufficentSpaceException);
     ASSERT_EQ(0, fi.size());
     ASSERT_FALSE(fi.contains(potion));
 }
@@ -47,7 +47,10 @@ TEST(FixedInventoryTest, insert_overflow)
     auto potion = chimera::internal::make_pointer<chimera::Item>(10, "Potion", 20, "Heal some HP");
 
     chimera::FixedSizeInventory fi{5};
-    fi.insert(potion, 6);
+    auto const insert_fn = [&fi, potion]() {
+        fi.insert(potion, 6);
+    };
+    ASSERT_THROW(insert_fn(), chimera::Inventory::InsufficentSpaceException);
     ASSERT_EQ(0, fi.size());
     ASSERT_FALSE(fi.contains(potion));
 }

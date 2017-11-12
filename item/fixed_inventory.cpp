@@ -41,6 +41,10 @@ namespace
                 it = items.insert(it, item);
             }
         }
+        else
+        {
+            throw chimera::Inventory::InsufficentSpaceException{};
+        }
     }
 }
 
