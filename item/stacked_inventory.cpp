@@ -13,21 +13,24 @@ StackedInventory::StackedInventory(std::size_t capacity, std::size_t stackLimit)
 
 StackedInventory::Slot::Slot(ConstPointer<Item> item, std::size_t count)
   : _item{std::move(item)}
-  , _count{count} { }
+  , _count{count}
+{
+}
 
 namespace
 {
     template <typename C>
-    auto find_it(C && c, chimera::ConstPointer<chimera::Item> const &item)
+    auto find_it(C && c, chimera::ConstPointer<chimera::Item> const & item)
     {
-        return std::lower_bound(std::begin(c), std::end(c), item->id(),
-                                [](auto const & slot, auto id) {
-                                    return slot._item->id() < id;
-                                });
+        return std::lower_bound(
+            std::begin(c), std::end(c), item->id(),
+            [](auto const & slot, auto id) { return slot._item->id() < id; });
     }
 
     template <typename C>
-    void insert_helper(C &items, chimera::ConstPointer<chimera::Item> const &item, std::size_t count, std::size_t stack_limit)
+    void insert_helper(C & items,
+                       chimera::ConstPointer<chimera::Item> const & item,
+                       std::size_t count, std::size_t stack_limit)
     {
         auto it = find_it(items, item);
         if((it != std::end(items)) && (it->_item->id() == item->id()))
@@ -58,13 +61,14 @@ namespace
     }
 }
 
-void StackedInventory::insert(ConstPointer<Item> const &item)
+void StackedInventory::insert(ConstPointer<Item> const & item)
 {
     insert_helper(_items, item, 1, _stack_limit);
     _total_count += 1;
 }
 
-void StackedInventory::insert(ConstPointer<Item> const &item, std::size_t count)
+void StackedInventory::insert(ConstPointer<Item> const & item,
+                              std::size_t count)
 {
     insert_helper(_items, item, count, _stack_limit);
     _total_count += count;
@@ -75,7 +79,8 @@ auto chimera::StackedInventory::size() const noexcept -> std::size_t
     return _total_count;
 }
 
-auto StackedInventory::count(ConstPointer<Item> const &item) const noexcept -> std::size_t
+auto StackedInventory::count(ConstPointer<Item> const & item) const noexcept
+    -> std::size_t
 {
     auto const first = find_it(_items, item);
     if((first != std::end(_items)) && (first->_item == item))
@@ -85,7 +90,8 @@ auto StackedInventory::count(ConstPointer<Item> const &item) const noexcept -> s
     return 0;
 }
 
-auto StackedInventory::contains(ConstPointer<Item> const &item) const noexcept -> bool
+auto StackedInventory::contains(ConstPointer<Item> const & item) const noexcept
+    -> bool
 {
     auto const first = find_it(_items, item);
     return ((first != std::end(_items)) && (first->_item == item));

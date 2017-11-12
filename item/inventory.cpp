@@ -2,7 +2,7 @@
 
 using chimera::Inventory;
 
-void Inventory::insert(ConstPointer<Item> const &item, std::size_t count)
+void Inventory::insert(ConstPointer<Item> const & item, std::size_t count)
 {
     while(count != 0)
     {
@@ -11,7 +11,7 @@ void Inventory::insert(ConstPointer<Item> const &item, std::size_t count)
     }
 }
 
-auto Inventory::contains(ConstPointer<Item> const &item) const noexcept -> bool
+auto Inventory::contains(ConstPointer<Item> const & item) const noexcept -> bool
 {
     return (count(item) != 0);
 }

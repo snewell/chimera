@@ -11,17 +11,21 @@ namespace chimera
     class Inventory
     {
     public:
-        virtual void insert(ConstPointer<Item> const &item) = 0;
+        virtual void insert(ConstPointer<Item> const & item) = 0;
 
-        virtual void insert(ConstPointer<Item> const &item, std::size_t count);
+        virtual void insert(ConstPointer<Item> const & item, std::size_t count);
 
         virtual auto size() const noexcept -> std::size_t = 0;
 
-        virtual auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t = 0;
+        virtual auto count(ConstPointer<Item> const & item) const noexcept
+            -> std::size_t = 0;
 
-        virtual auto contains(ConstPointer<Item> const &item) const noexcept -> bool;
+        virtual auto contains(ConstPointer<Item> const & item) const noexcept
+            -> bool;
 
-        class InsufficentSpaceException : public std::exception { };
+        class InsufficentSpaceException : public std::exception
+        {
+        };
     };
 
     class FixedSizeInventory : public Inventory
@@ -29,15 +33,18 @@ namespace chimera
     public:
         FixedSizeInventory(std::size_t capacity);
 
-        void insert(ConstPointer<Item> const &item) override;
+        void insert(ConstPointer<Item> const & item) override;
 
-        void insert(ConstPointer<Item> const &item, std::size_t count) override;
+        void insert(ConstPointer<Item> const & item,
+                    std::size_t count) override;
 
         auto size() const noexcept -> std::size_t override;
 
-        auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t override;
+        auto count(ConstPointer<Item> const & item) const noexcept
+            -> std::size_t override;
 
-        auto contains(ConstPointer<Item> const &item) const noexcept -> bool override;
+        auto contains(ConstPointer<Item> const & item) const noexcept
+            -> bool override;
 
     private:
         std::vector<ConstPointer<Item>> _items;
@@ -48,15 +55,18 @@ namespace chimera
     public:
         StackedInventory(std::size_t capacity, std::size_t stackLimit);
 
-        void insert(ConstPointer<Item> const &item) override;
+        void insert(ConstPointer<Item> const & item) override;
 
-        void insert(ConstPointer<Item> const &item, std::size_t count) override;
+        void insert(ConstPointer<Item> const & item,
+                    std::size_t count) override;
 
         auto size() const noexcept -> std::size_t override;
 
-        auto count(ConstPointer<Item> const &item) const noexcept -> std::size_t override;
+        auto count(ConstPointer<Item> const & item) const noexcept
+            -> std::size_t override;
 
-        auto contains(ConstPointer<Item> const &item) const noexcept -> bool override;
+        auto contains(ConstPointer<Item> const & item) const noexcept
+            -> bool override;
 
     private:
         struct Slot
