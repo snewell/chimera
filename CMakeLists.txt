@@ -69,6 +69,7 @@ set_target_properties(
                      )
 target_include_directories(chimera PUBLIC
                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include_internal>
                             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
                           )
 target_include_directories(chimera-static PUBLIC
@@ -91,6 +92,7 @@ install(FILES
             include/chimera/currency.hpp
             include/chimera/equipment.hpp
             include/chimera/identified_object.hpp
+            include/chimera/inventory.hpp
             include/chimera/item.hpp
             include/chimera/job.hpp
             include/chimera/money.hpp
