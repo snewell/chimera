@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <chimera/inventory.hpp>
 #include <chimera/internal/make_pointer.hpp>
+#include <chimera/inventory.hpp>
 
 namespace
 {
@@ -9,7 +9,9 @@ namespace
     {
     public:
         SimpleInventory()
-          : _inventory{10} { }
+          : _inventory{10}
+        {
+        }
 
         void insert(chimera::ConstPointer<chimera::Item> const & item) override
         {
@@ -21,7 +23,8 @@ namespace
             return _inventory.size();
         }
 
-        auto count(chimera::ConstPointer<chimera::Item> const & item) const noexcept -> std::size_t override
+        auto count(chimera::ConstPointer<chimera::Item> const & item) const
+            noexcept -> std::size_t override
         {
             return _inventory.count(item);
         }
@@ -38,7 +41,7 @@ TEST(InventoryTest, insert_dup)
 
     SimpleInventory si;
 
-    chimera::Inventory &inventory = si;
+    chimera::Inventory & inventory = si;
     inventory.insert(potion, 3);
     ASSERT_TRUE(inventory.contains(potion));
 }
