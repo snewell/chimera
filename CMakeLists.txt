@@ -16,13 +16,29 @@ option(BUILD_TESTS  "Build unit tests" ON)
 if(BUILD_TESTS)
     find_package(GTest REQUIRED)
 
+    add_subdirectory(test)
+
+    add_library(chimera_test SHARED ${test_sources})
+    set_target_properties(chimera_test PROPERTIES
+                            CXX_STANDARD 17
+                            CXX_EXTENSIONS OFF
+                         )
+    target_include_directories(chimera_test PUBLIC
+                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include_internal>
+                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include_test>
+                                $<INSTALL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include_test>
+                              )
+    target_link_libraries(chimera_test
+                            chimera
+                         )
+
     function(create_test name)
         add_executable(${name} ${ARGN})
         target_link_libraries(${name}
                                 GTest::GTest
                                 GTest::Main
                                 Threads::Threads
-                                chimera
+                                chimera_test
                              )
         set_target_properties(${name} PROPERTIES
                                 CXX_STANDARD 17

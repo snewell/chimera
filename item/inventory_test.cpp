@@ -2,6 +2,7 @@
 
 #include <chimera/internal/make_pointer.hpp>
 #include <chimera/inventory.hpp>
+#include <chimera/test/items.hpp>
 
 namespace
 {
@@ -36,11 +37,8 @@ namespace
 
 TEST(InventoryTest, insert_dup)
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     SimpleInventory si;
-
     chimera::Inventory & inventory = si;
     inventory.insert(potion, 3);
     ASSERT_TRUE(inventory.contains(potion));

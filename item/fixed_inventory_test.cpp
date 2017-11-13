@@ -2,6 +2,7 @@
 
 #include <chimera/internal/make_pointer.hpp>
 #include <chimera/inventory.hpp>
+#include <chimera/test/items.hpp>
 
 TEST(FixedInventoryTest, ctor) // NOLINT
 {
@@ -12,9 +13,7 @@ TEST(FixedInventoryTest, ctor) // NOLINT
 
 TEST(FixedInventoryTest, insert_success) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::FixedSizeInventory fi{10};
     fi.insert(potion);
     ASSERT_EQ(1, fi.size());
@@ -24,9 +23,7 @@ TEST(FixedInventoryTest, insert_success) // NOLINT
 
 TEST(FixedInventoryTest, insert_dup_success) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::FixedSizeInventory fi{10};
     fi.insert(potion, 3);
     ASSERT_EQ(3, fi.size());
@@ -36,9 +33,7 @@ TEST(FixedInventoryTest, insert_dup_success) // NOLINT
 
 TEST(FixedInventoryTest, insert_full) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::FixedSizeInventory fi{0};
     ASSERT_THROW(fi.insert(potion),
                  chimera::Inventory::InsufficentSpaceException);
@@ -48,9 +43,7 @@ TEST(FixedInventoryTest, insert_full) // NOLINT
 
 TEST(FixedInventoryTest, insert_overflow) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::FixedSizeInventory fi{5};
     auto const insert_fn = [&fi, potion]() { fi.insert(potion, 6); };
     ASSERT_THROW(insert_fn(), chimera::Inventory::InsufficentSpaceException);

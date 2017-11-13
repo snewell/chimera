@@ -2,6 +2,7 @@
 
 #include <chimera/internal/make_pointer.hpp>
 #include <chimera/inventory.hpp>
+#include <chimera/test/items.hpp>
 
 TEST(StackedInventoryTest, ctor) // NOLINT
 {
@@ -12,9 +13,7 @@ TEST(StackedInventoryTest, ctor) // NOLINT
 
 TEST(StackedInventoryTest, insert_success) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::StackedInventory si{10, 10};
     si.insert(potion);
     ASSERT_EQ(1, si.size());
@@ -24,9 +23,7 @@ TEST(StackedInventoryTest, insert_success) // NOLINT
 
 TEST(StackedInventoryTest, insert_dup_success) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::StackedInventory si{10, 10};
     si.insert(potion, 3);
     ASSERT_EQ(3, si.size());
@@ -36,9 +33,7 @@ TEST(StackedInventoryTest, insert_dup_success) // NOLINT
 
 TEST(StackedInventoryTest, insert_existing) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::StackedInventory si{10, 10};
     si.insert(potion);
     si.insert(potion);
@@ -47,9 +42,7 @@ TEST(StackedInventoryTest, insert_existing) // NOLINT
 
 TEST(StackedInventoryTest, insert_full) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::StackedInventory si{0, 10};
     ASSERT_THROW(si.insert(potion),
                  chimera::Inventory::InsufficentSpaceException);
@@ -60,9 +53,7 @@ TEST(StackedInventoryTest, insert_full) // NOLINT
 
 TEST(StackedInventoryTest, insert_overflow) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::StackedInventory si{5, 5};
     si.insert(potion);
     auto insert_fn = [&si, potion]() { si.insert(potion, 5); };
@@ -72,9 +63,7 @@ TEST(StackedInventoryTest, insert_overflow) // NOLINT
 
 TEST(StackedInventoryTest, insert_new_overflow) // NOLINT
 {
-    auto potion = chimera::internal::make_pointer<chimera::Item>(
-        10, "Potion", 20, "Heal some HP");
-
+    auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     chimera::StackedInventory si{5, 5};
     auto insert_fn = [&si, potion]() { si.insert(potion, 6); };
     ASSERT_THROW(insert_fn(), chimera::Inventory::InsufficentSpaceException);
