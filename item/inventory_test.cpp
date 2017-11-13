@@ -35,7 +35,7 @@ namespace
     };
 }
 
-TEST(InventoryTest, insert_dup)
+TEST(InventoryTest, insert_dup) // NOLINT
 {
     auto potion = chimera::test::Items::get(chimera::test::Items::Id::potion);
     SimpleInventory si;
